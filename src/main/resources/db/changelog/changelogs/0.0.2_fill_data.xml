@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0.0.2_fill_data" author="Deniel Konstantinov">
+        <insert tableName="language">
+            <column name="language_name" value="English"/>
+        </insert>
+        <insert tableName="language">
+            <column name="language_name" value="Estonian"/>
+        </insert>
+        <insert tableName="language">
+            <column name="language_name" value="Russian"/>
+        </insert>
+
+        <insert tableName="genre">
+            <column name="genre_name" value="Action"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="genre_name" value="Comedy"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="genre_name" value="Drama"/>
+        </insert>
+
+        <insert tableName="movie">
+            <column name="title" value="Movie 1"/>
+            <column name="language_id" valueNumeric="1"/>
+            <column name="length_in_minutes" valueNumeric="120"/>
+        </insert>
+        <insert tableName="movie">
+            <column name="title" value="Movie 2"/>
+            <column name="age_restriction" valueNumeric="18"/>
+            <column name="language_id" valueNumeric="1"/>
+            <column name="length_in_minutes" valueNumeric="180"/>
+        </insert>
+        <insert tableName="movie">
+            <column name="title" value="Movie 3"/>
+            <column name="age_restriction" valueNumeric="14"/>
+            <column name="language_id" valueNumeric="1"/>
+            <column name="length_in_minutes" valueNumeric="60"/>
+        </insert>
+        <insert tableName="movie">
+            <column name="title" value="Movie 4"/>
+            <column name="age_restriction" valueNumeric="14"/>
+            <column name="language_id" valueNumeric="1"/>
+            <column name="length_in_minutes" valueNumeric="60"/>
+        </insert>
+
+        <insert tableName="movie_genre">
+            <column name="movie_id" valueNumeric="1"/>
+            <column name="genre_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="movie_genre">
+            <column name="movie_id" valueNumeric="1"/>
+            <column name="genre_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="movie_genre">
+            <column name="movie_id" valueNumeric="2"/>
+            <column name="genre_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="movie_genre">
+            <column name="movie_id" valueNumeric="3"/>
+            <column name="genre_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="movie_genre">
+            <column name="movie_id" valueNumeric="4"/>
+            <column name="genre_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="movie_genre">
+            <column name="movie_id" valueNumeric="4"/>
+            <column name="genre_id" valueNumeric="3"/>
+        </insert>
+
+
+        <insert tableName="cinema">
+            <column name="cinema_name" value="Cinema 1"/>
+        </insert>
+        <insert tableName="cinema">
+            <column name="cinema_name" value="Cinema 2"/>
+        </insert>
+        <insert tableName="cinema">
+            <column name="cinema_name" value="Cinema 3"/>
+        </insert>
+
+        <insert tableName="cinema_hall">
+            <column name="cinema_id" valueNumeric="1"/>
+            <column name="total_seats" valueNumeric="25"/>
+        </insert>
+        <insert tableName="cinema_hall">
+            <column name="cinema_id" valueNumeric="2"/>
+            <column name="total_seats" valueNumeric="25"/>
+        </insert>
+        <insert tableName="cinema_hall">
+            <column name="cinema_id" valueNumeric="3"/>
+            <column name="total_seats" valueNumeric="25"/>
+        </insert>
+
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="1"/>
+            <column name="seat_number" valueNumeric="1"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="1"/>
+            <column name="seat_number" valueNumeric="2"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="1"/>
+            <column name="seat_number" valueNumeric="3"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="1"/>
+            <column name="seat_number" valueNumeric="4"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="1"/>
+            <column name="seat_number" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="2"/>
+            <column name="seat_number" valueNumeric="1"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="2"/>
+            <column name="seat_number" valueNumeric="2"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="2"/>
+            <column name="seat_number" valueNumeric="3"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="2"/>
+            <column name="seat_number" valueNumeric="4"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="2"/>
+            <column name="seat_number" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="3"/>
+            <column name="seat_number" valueNumeric="1"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="3"/>
+            <column name="seat_number" valueNumeric="2"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="3"/>
+            <column name="seat_number" valueNumeric="3"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="3"/>
+            <column name="seat_number" valueNumeric="4"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="3"/>
+            <column name="seat_number" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="4"/>
+            <column name="seat_number" valueNumeric="1"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="4"/>
+            <column name="seat_number" valueNumeric="2"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="4"/>
+            <column name="seat_number" valueNumeric="3"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="4"/>
+            <column name="seat_number" valueNumeric="4"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="4"/>
+            <column name="seat_number" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="5"/>
+            <column name="seat_number" valueNumeric="1"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="5"/>
+            <column name="seat_number" valueNumeric="2"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="5"/>
+            <column name="seat_number" valueNumeric="3"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="5"/>
+            <column name="seat_number" valueNumeric="4"/>
+        </insert>
+        <insert tableName="seat">
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="seat_row" valueNumeric="5"/>
+            <column name="seat_number" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="user_name" value="John Smith"/>
+        </insert>
+        <insert tableName="users">
+            <column name="user_name" value="Jane Doe"/>
+        </insert>
+
+        <insert tableName="user_movie_history">
+            <column name="user_id" value="1"/>
+            <column name="movie_id" value="1"/>
+        </insert>
+
+        <insert tableName="screening">
+            <column name="movie_id" valueNumeric="4"/>
+            <column name="cinema_hall_id" valueNumeric="1"/>
+            <column name="screening_time" value="2024-03-29 12:00:00"/>
+        </insert>
+
+        <insert tableName="seat_booking">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="screening_id" valueNumeric="1"/>
+            <column name="seat_id" valueNumeric="11"/>
+        </insert>
+        <insert tableName="seat_booking">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="screening_id" valueNumeric="1"/>
+            <column name="seat_id" valueNumeric="12"/>
+        </insert>
+        <insert tableName="seat_booking">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="screening_id" valueNumeric="1"/>
+            <column name="seat_id" valueNumeric="13"/>
+        </insert>
+        <insert tableName="seat_booking">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="screening_id" valueNumeric="1"/>
+            <column name="seat_id" valueNumeric="14"/>
+        </insert>
+        <insert tableName="seat_booking">
+            <column name="user_id" valueNumeric="2"/>
+            <column name="screening_id" valueNumeric="1"/>
+            <column name="seat_id" valueNumeric="15"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

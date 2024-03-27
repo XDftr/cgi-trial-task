@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0.0.1_create_tables" author="Deniel Konstantinov">
+        <createTable tableName="language">
+            <column name="language_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_language_language_id"/>
+            </column>
+            <column name="language_name" type="varchar(50)">
+                <constraints unique="true" uniqueConstraintName="uk_language_language_name"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="genre">
+            <column name="genre_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_genre_genre_id"/>
+            </column>
+            <column name="genre_name" type="varchar(50)">
+                <constraints unique="true" uniqueConstraintName="uk_genre_genre_name"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="movie">
+            <column name="movie_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_movie_movie_id"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age_restriction" type="smallint"/>
+            <column name="language_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="length_in_minutes" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="movie"
+                                 baseColumnNames="language_id"
+                                 constraintName="fk_movie_language_id"
+                                 referencedTableName="language"
+                                 referencedColumnNames="language_id"/>
+
+        <createTable tableName="movie_genre">
+            <column name="movie_genre_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_movie_genre_movie_genre_id"/>
+            </column>
+            <column name="movie_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="movie_genre"
+                                 baseColumnNames="movie_id"
+                                 constraintName="fk_movie_genre_movie_id"
+                                 referencedTableName="movie"
+                                 referencedColumnNames="movie_id"/>
+
+        <addForeignKeyConstraint baseTableName="movie_genre"
+                                 baseColumnNames="genre_id"
+                                 constraintName="fk_movie_genre_genre_id"
+                                 referencedTableName="genre"
+                                 referencedColumnNames="genre_id"/>
+        <addUniqueConstraint
+                tableName="movie_genre"
+                constraintName="uk_movie_genre_movie_id_genre_id"
+                columnNames="movie_id,genre_id"/>
+
+        <createTable tableName="cinema">
+            <column name="cinema_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_cinema_cinema_id"/>
+            </column>
+            <column name="cinema_name" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="cinema_hall">
+            <column name="cinema_hall_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_cinema_hall_cinema_hall_id"/>
+            </column>
+            <column name="cinema_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_seats" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="cinema_hall"
+                                 baseColumnNames="cinema_id"
+                                 constraintName="fk_cinema_hall_cinema_id"
+                                 referencedTableName="cinema"
+                                 referencedColumnNames="cinema_id"/>
+
+        <createTable tableName="seat">
+            <column name="seat_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_seat_seat_id"/>
+            </column>
+            <column name="cinema_hall_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_row" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_number" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="seat"
+                             constraintName="uk_seat_cinema_hall_id_row_number"
+                             columnNames="cinema_hall_id,seat_row,seat_number"/>
+
+        <addForeignKeyConstraint baseTableName="seat"
+                                 baseColumnNames="cinema_hall_id"
+                                 constraintName="fk_seat_cinema_hall_id"
+                                 referencedTableName="cinema_hall"
+                                 referencedColumnNames="cinema_hall_id"/>
+
+        <createTable tableName="screening">
+            <column name="screening_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_screening_screening_id"/>
+            </column>
+            <column name="cinema_hall_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movie_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="screening_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="screening"
+                                 baseColumnNames="movie_id"
+                                 constraintName="fk_screening_movie_id"
+                                 referencedTableName="movie"
+                                 referencedColumnNames="movie_id"/>
+
+        <addForeignKeyConstraint baseTableName="screening"
+                                 baseColumnNames="cinema_hall_id"
+                                 constraintName="fk_screening_cinema_hall_id"
+                                 referencedTableName="cinema_hall"
+                                 referencedColumnNames="cinema_hall_id"/>
+
+
+        <createTable tableName="users">
+            <column name="user_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_users_user_id"/>
+            </column>
+            <column name="user_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user_movie_history">
+            <column name="user_movie_history_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_user_movie_history_user_movie_history_id"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movie_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_movie_history"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_user_movie_history_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+
+        <addForeignKeyConstraint baseTableName="user_movie_history"
+                                 baseColumnNames="movie_id"
+                                 constraintName="fk_user_movie_history_movie_id"
+                                 referencedTableName="movie"
+                                 referencedColumnNames="movie_id"/>
+
+        <createTable tableName="seat_booking">
+            <column name="seat_booking_id" type="serial">
+                <constraints primaryKey="true" primaryKeyName="pk_seat_booking_seat_booking_id"/>
+            </column>
+            <column name="screening_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="seat_booking"
+                                 baseColumnNames="screening_id"
+                                 constraintName="fk_seat_booking_screening_id"
+                                 referencedTableName="screening"
+                                 referencedColumnNames="screening_id"/>
+
+        <addForeignKeyConstraint baseTableName="seat_booking"
+                                 baseColumnNames="seat_id"
+                                 constraintName="fk_seat_booking_seat_id"
+                                 referencedTableName="seat"
+                                 referencedColumnNames="seat_id"/>
+
+        <addForeignKeyConstraint baseTableName="seat_booking"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_seat_booking_user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+    </changeSet>
+</databaseChangeLog>
