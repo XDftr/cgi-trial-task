@@ -51,3 +51,7 @@ Suggests seats for a selected screening and the specified number of tickets.
 - **Query Parameters:**
     - `screening` - ID of the screening
     - `tickets` - Number of tickets
+
+### API Documentation
+
+API documentation can also be found at http://localhost:8080/swagger-ui/index.html
